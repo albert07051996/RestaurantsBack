@@ -1,0 +1,70 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A1A1A1A1-A1A1-A1A1-A1A1-A1A1A1A1A1A1}"
+EndProject
+
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{B1B1B1B1-B1B1-B1B1-B1B1-B1B1B1B1B1B1}"
+EndProject
+
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Identity", "Identity", "{C1C1C1C1-C1C1-C1C1-C1C1-C1C1C1C1C1C1}"
+EndProject
+
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity.API", "src\Services\Identity\Identity.API\Identity.API.csproj", "{D1D1D1D1-D1D1-D1D1-D1D1-D1D1D1D1D1D1}"
+EndProject
+
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity.Application", "src\Services\Identity\Identity.Application\Identity.Application.csproj", "{D2D2D2D2-D2D2-D2D2-D2D2-D2D2D2D2D2D2}"
+EndProject
+
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity.Domain", "src\Services\Identity\Identity.Domain\Identity.Domain.csproj", "{D3D3D3D3-D3D3-D3D3-D3D3-D3D3D3D3D3D3}"
+EndProject
+
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity.Infrastructure", "src\Services\Identity\Identity.Infrastructure\Identity.Infrastructure.csproj", "{D4D4D4D4-D4D4-D4D4-D4D4-D4D4D4D4D4D4}"
+EndProject
+
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BuildingBlocks", "BuildingBlocks", "{E1E1E1E1-E1E1-E1E1-E1E1-E1E1E1E1E1E1}"
+EndProject
+
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildingBlocks.Shared", "src\BuildingBlocks\Shared\BuildingBlocks.Shared.csproj", "{E2E2E2E2-E2E2-E2E2-E2E2-E2E2E2E2E2E2}"
+EndProject
+
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D1D1D1D1-D1D1-D1D1-D1D1-D1D1D1D1D1D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1D1D1D1-D1D1-D1D1-D1D1-D1D1D1D1D1D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1D1D1D1-D1D1-D1D1-D1D1-D1D1D1D1D1D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1D1D1D1-D1D1-D1D1-D1D1-D1D1D1D1D1D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2D2D2D2-D2D2-D2D2-D2D2-D2D2D2D2D2D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2D2D2D2-D2D2-D2D2-D2D2-D2D2D2D2D2D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2D2D2D2-D2D2-D2D2-D2D2-D2D2D2D2D2D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2D2D2D2-D2D2-D2D2-D2D2-D2D2D2D2D2D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3D3D3D3-D3D3-D3D3-D3D3-D3D3D3D3D3D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3D3D3D3-D3D3-D3D3-D3D3-D3D3D3D3D3D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3D3D3D3-D3D3-D3D3-D3D3-D3D3D3D3D3D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3D3D3D3-D3D3-D3D3-D3D3-D3D3D3D3D3D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4D4D4D4-D4D4-D4D4-D4D4-D4D4D4D4D4D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4D4D4D4-D4D4-D4D4-D4D4-D4D4D4D4D4D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4D4D4D4-D4D4-D4D4-D4D4-D4D4D4D4D4D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4D4D4D4-D4D4-D4D4-D4D4-D4D4D4D4D4D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2E2E2E2-E2E2-E2E2-E2E2-E2E2E2E2E2E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2E2E2E2-E2E2-E2E2-E2E2-E2E2E2E2E2E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2E2E2E2-E2E2-E2E2-E2E2-E2E2E2E2E2E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2E2E2E2-E2E2-E2E2-E2E2-E2E2E2E2E2E2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B1B1B1B1-B1B1-B1B1-B1B1-B1B1B1B1B1B1} = {A1A1A1A1-A1A1-A1A1-A1A1-A1A1A1A1A1A1}
+		{C1C1C1C1-C1C1-C1C1-C1C1-C1C1C1C1C1C1} = {B1B1B1B1-B1B1-B1B1-B1B1-B1B1B1B1B1B1}
+		{D1D1D1D1-D1D1-D1D1-D1D1-D1D1D1D1D1D1} = {C1C1C1C1-C1C1-C1C1-C1C1-C1C1C1C1C1C1}
+		{D2D2D2D2-D2D2-D2D2-D2D2-D2D2D2D2D2D2} = {C1C1C1C1-C1C1-C1C1-C1C1-C1C1C1C1C1C1}
+		{D3D3D3D3-D3D3-D3D3-D3D3-D3D3D3D3D3D3} = {C1C1C1C1-C1C1-C1C1-C1C1-C1C1C1C1C1C1}
+		{D4D4D4D4-D4D4-D4D4-D4D4-D4D4D4D4D4D4} = {C1C1C1C1-C1C1-C1C1-C1C1-C1C1C1C1C1C1}
+		{E1E1E1E1-E1E1-E1E1-E1E1-E1E1E1E1E1E1} = {A1A1A1A1-A1A1-A1A1-A1A1-A1A1A1A1A1A1}
+		{E2E2E2E2-E2E2-E2E2-E2E2-E2E2E2E2E2E2} = {E1E1E1E1-E1E1-E1E1-E1E1-E1E1E1E1E1E1}
+	EndGlobalSection
+EndGlobal
