@@ -13,6 +13,7 @@ COPY . .
 RUN dotnet restore "Microservices.sln"
 
 # Build and publish Identity.API
+FROM build AS publish
 RUN dotnet publish "src/Services/Identity/Identity.API/Identity.API.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
