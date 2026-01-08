@@ -1,0 +1,47 @@
+services:
+  # Identity Service
+  - type: web
+    name: restaurants-identity
+    runtime: docker
+    repo: https://github.com/albert07051996/RestaurantsBack
+    branch: main
+    dockerfilePath: ./Dockerfile.identity
+    envVars:
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Production
+      - key: ASPNETCORE_URLS
+        value: http://+:10000
+      - key: ConnectionStrings__IdentityDb
+        fromDatabase:
+          name: restaurants-postgres
+          property: connectionString
+      - key: JWT__SecretKey
+        generateValue: true
+      - key: JWT__Issuer
+        value: https://restaurants-identity.onrender.com
+      - key: JWT__Audience
+        value: https://restaurants-identity.onrender.com
+
+  # Product Service
+  - type: web
+    name: restaurants-product
+    runtime: docker
+    repo: https://github.com/albert07051996/RestaurantsBack
+    branch: main
+    dockerfilePath: ./Dockerfile.product
+    envVars:
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Production
+      - key: ASPNETCORE_URLS
+        value: http://+:10000
+      - key: ConnectionStrings__ProductDb
+        fromDatabase:
+          name: restaurants-postgres
+          property: connectionString
+
+# PostgreSQL Database
+databases:
+  - name: restaurants-postgres
+    databaseName: restaurantsdb
+    user: postgres
+    plan: free
