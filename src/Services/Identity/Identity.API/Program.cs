@@ -1,4 +1,4 @@
-using System.Text;
+﻿using System.Text;
 using Identity.Application.Interfaces;
 using Identity.Domain.Interfaces;
 using Identity.Infrastructure.Data;
@@ -100,11 +100,18 @@ builder.Services.AddCors(options =>
 var app = builder.Build();
 
 // Configure the HTTP request pipeline
-if (app.Environment.IsDevelopment())
+//if (app.Environment.IsDevelopment())
+//{
+//    app.UseSwagger();
+//    app.UseSwaggerUI();
+//}
+
+app.UseSwagger();
+app.UseSwaggerUI(c =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Identity API v1");
+    c.RoutePrefix = "swagger"; // ან string.Empty თუ root-ზე გინდა
+});
 
 app.UseCors("AllowAll");
 app.UseAuthentication();
