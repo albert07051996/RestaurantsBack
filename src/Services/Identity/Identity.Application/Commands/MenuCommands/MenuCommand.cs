@@ -27,6 +27,5 @@ public record MenuCommand
     bool IsVeganFood,
     string Comment,
     string ImageUrl,
-    string VideoUrl,
-    Guid? ImagePublicId
+    string VideoUrl
 )   : IRequest<Result<MenuResponseDto>>;

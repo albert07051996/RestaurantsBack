@@ -52,8 +52,7 @@ public class MenuCommandHandler : IRequestHandler<MenuCommand, Result<MenuRespon
         request.IsVeganFood,
         request.Comment,
         request.Calories,
-        request.SpicyLevel,
-        request.ImagePublicId
+        request.SpicyLevel
         );
 
         await _menuRepository.AddAsync(menu, cancellationToken);

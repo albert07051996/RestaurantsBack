@@ -24,12 +24,12 @@ namespace Identity.Domain.Entities
         public int? SpicyLevel { get; set; }
         public Guid FoodCategoryId { get; private set; }
         public FoodCategory FoodCategory { get; private set; } = null!;
-        public Guid? ImagePublicId { get; set; } 
+        public string? ImagePublicId { get; set; }
 
 
         private MenuItem() { }
 
-        public MenuItem(string nameKa, string nameEn, string descriptionKa, string descriptionEn, decimal? price, Guid foodCategoryId, string imageUrl, string videoUrl, int? preparationTimeMinutes, string volume, string alcoholContent, string ingredients, string ingredientsEn, bool isVeganFood, string comment, int? calories, int? spicyLevel, Guid? imagePublicId)
+        public MenuItem(string nameKa, string nameEn, string descriptionKa, string descriptionEn, decimal? price, Guid foodCategoryId, string imageUrl, string videoUrl, int? preparationTimeMinutes, string volume, string alcoholContent, string ingredients, string ingredientsEn, bool isVeganFood, string comment, int? calories, int? spicyLevel)
         {
             NameKa = nameKa;
             NameEn = nameEn;
@@ -48,12 +48,11 @@ namespace Identity.Domain.Entities
             Comment = comment;
             Calories = calories;
             SpicyLevel = spicyLevel;
-            ImagePublicId = imagePublicId;
         }
 
         public void Update(string nameKa, string nameEn, string descriptionKa, string descriptionEn, decimal? price, Guid foodCategoryId,
             string imageUrl, string videoUrl, int? preparationTimeMinutes, bool isAvailable, string volume, string alcoholContent,
-            string ingredients, string ingredientsEn, bool isVeganFood, string comment, int? calories, int? spicyLevel, Guid? imagePublicId)
+            string ingredients, string ingredientsEn, bool isVeganFood, string comment, int? calories, int? spicyLevel)
         {
             NameKa = nameKa;
             NameEn = nameEn;
@@ -73,7 +72,7 @@ namespace Identity.Domain.Entities
             Comment = comment;
             Calories = calories;
             SpicyLevel = spicyLevel;
-            ImagePublicId = imagePublicId;
+
             UpdateTimestamp();
         }
     }

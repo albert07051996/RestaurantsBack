@@ -102,9 +102,6 @@ namespace Identity.Infrastructure.Migrations
                     b.Property<Guid>("FoodCategoryId")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid?>("ImagePublicId")
-                        .HasColumnType("uuid");
-
                     b.Property<string>("ImageUrl")
                         .IsRequired()
                         .HasMaxLength(500)

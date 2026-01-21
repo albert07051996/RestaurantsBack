@@ -33,17 +33,17 @@ namespace Identity.Application.Features.Products.Commands.UploadImage
             );
 
             // მოძებნე პროდუქტი
-            //var product = await _menuRepository.GetByIdAsync(
-            //    request.ProductId,
-            //    cancellationToken
-            //);
+            var product = await _menuRepository.GetByIdAsync(
+                request.ProductId,
+                cancellationToken
+            );
 
-            //if (product == null)
-            //{
-            //    // თუ არ მოიძებნა, წაშალე ატვირთული სურათი
-            //    await _imageStorageService.DeleteImageAsync(publicId, cancellationToken);
-            //    throw new Exception("Product not found");
-            //}
+            if (product == null)
+            {
+                // თუ არ მოიძებნა, წაშალე ატვირთული სურათი
+                await _imageStorageService.DeleteImageAsync(publicId, cancellationToken);
+                throw new Exception("Product not found");
+            }
 
             // წინა სურათის წაშლა (თუ არსებობს)
             if (!string.IsNullOrEmpty(product.ImageUrl))
