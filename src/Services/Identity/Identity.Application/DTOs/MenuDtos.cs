@@ -17,7 +17,8 @@ public record CreateMenuItemDto(
     bool IsVeganFood,
     string Comment,
     string ImageUrl,
-    string VideoUrl 
+    string VideoUrl, 
+    Guid? ImagePublicId
 
 
 );

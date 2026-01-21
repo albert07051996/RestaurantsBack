@@ -77,7 +77,8 @@ public class MenuController : ControllerBase
             dto.IsVeganFood,
             dto.Comment,
             dto.ImageUrl,
-            dto.VideoUrl
+            dto.VideoUrl,
+            dto.ImagePublicId
         );
 
         var result = await _mediator.Send(command);

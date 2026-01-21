@@ -1,16 +1,19 @@
-﻿using System.Text;
+﻿using BuildingBlocks.Shared.Interfaces;
+using Identity.Application.Commands.AuthCommands;
+using Identity.Application.Common.Interfaces;
 using Identity.Application.Interfaces;
 using Identity.Domain.Interfaces;
 using Identity.Infrastructure.Data;
 using Identity.Infrastructure.Repositories;
 using Identity.Infrastructure.Services;
-using BuildingBlocks.Shared.Interfaces;
+using Identity.Infrastructure.Services.ImageStorage;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using Identity.Application.Commands.AuthCommands;
-using Identity.Application.Common.Interfaces;
+using ProductService.Infrastructure.Services.ImageStorage;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -61,6 +64,12 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IMenuRepository, MenuRepository>();
 builder.Services.AddScoped<IFoodCategoryRepository, FoodCategoryRepository>();
+//Cloudinary
+builder.Services.Configure<CloudinarySettings>(
+    builder.Configuration.GetSection("Cloudinary"));
+
+builder.Services.AddScoped<IImageStorageService, CloudinaryImageStorageService>();
+
 
 // Services
 builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
