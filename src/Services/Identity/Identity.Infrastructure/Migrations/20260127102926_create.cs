@@ -8,13 +8,13 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Identity.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class createAll : Migration
+    public partial class create : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "FoodCategories",
+                name: "DishCategories",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -30,7 +30,7 @@ namespace Identity.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_FoodCategories", x => x.Id);
+                    table.PrimaryKey("PK_DishCategories", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -72,7 +72,7 @@ namespace Identity.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "MenuItems",
+                name: "Dishes",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -89,22 +89,23 @@ namespace Identity.Infrastructure.Migrations
                     AlcoholContent = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
                     Ingredients = table.Column<string>(type: "text", nullable: false),
                     IngredientsEn = table.Column<string>(type: "text", nullable: false),
-                    IsVeganFood = table.Column<bool>(type: "boolean", nullable: false),
+                    IsVeganDish = table.Column<bool>(type: "boolean", nullable: false),
                     Comment = table.Column<string>(type: "character varying(300)", maxLength: 300, nullable: false),
                     Calories = table.Column<int>(type: "integer", nullable: true),
                     SpicyLevel = table.Column<int>(type: "integer", nullable: true),
-                    FoodCategoryId = table.Column<Guid>(type: "uuid", nullable: false),
+                    DishCategoryId = table.Column<Guid>(type: "uuid", nullable: false),
+                    ImagePublicId = table.Column<string>(type: "text", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MenuItems", x => x.Id);
+                    table.PrimaryKey("PK_Dishes", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_MenuItems_FoodCategories_FoodCategoryId",
-                        column: x => x.FoodCategoryId,
-                        principalTable: "FoodCategories",
+                        name: "FK_Dishes_DishCategories_DishCategoryId",
+                        column: x => x.DishCategoryId,
+                        principalTable: "DishCategories",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -147,9 +148,9 @@ namespace Identity.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_MenuItems_FoodCategoryId",
-                table: "MenuItems",
-                column: "FoodCategoryId");
+                name: "IX_Dishes_DishCategoryId",
+                table: "Dishes",
+                column: "DishCategoryId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Roles_Name",
@@ -185,13 +186,13 @@ namespace Identity.Infrastructure.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "MenuItems");
+                name: "Dishes");
 
             migrationBuilder.DropTable(
                 name: "UserRoles");
 
             migrationBuilder.DropTable(
-                name: "FoodCategories");
+                name: "DishCategories");
 
             migrationBuilder.DropTable(
                 name: "Roles");

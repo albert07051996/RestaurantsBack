@@ -2,14 +2,13 @@
 
 namespace Identity.Domain.Entities
 {
-    public class MenuItem : BaseEntity
+    public class Dish : BaseEntity
     {
         public string NameKa { get; set; } = string.Empty;
         public string NameEn { get; set; } = string.Empty;
         public string DescriptionKa { get; set; } = string.Empty;
         public string DescriptionEn { get; set; } = string.Empty;
-        public decimal? Price { get; set; }
-      
+        public decimal? Price { get; set; }      
         public string ImageUrl { get; set; } = string.Empty;
         public string VideoUrl { get; set; } = string.Empty;
         public int? PreparationTimeMinutes { get; set; }
@@ -18,25 +17,25 @@ namespace Identity.Domain.Entities
         public string AlcoholContent { get; set; }= string.Empty;
         public string Ingredients { get; set; } = string.Empty;
         public string IngredientsEn { get; set; } = string.Empty;
-        public bool IsVeganFood { get; set; } = false;
+        public bool IsVeganDish { get; set; } = false;
         public string Comment { get; set; } = string.Empty;
         public int? Calories { get; set; }
         public int? SpicyLevel { get; set; }
-        public Guid FoodCategoryId { get; private set; }
-        public FoodCategory FoodCategory { get; private set; } = null!;
+        public Guid DishCategoryId { get; private set; }
+        public DishCategory DishCategory { get; private set; } = null!;
         public string? ImagePublicId { get; set; }
 
 
-        private MenuItem() { }
+        private Dish() { }
 
-        public MenuItem(string nameKa, string nameEn, string descriptionKa, string descriptionEn, decimal? price, Guid foodCategoryId, string imageUrl, string videoUrl, int? preparationTimeMinutes, string volume, string alcoholContent, string ingredients, string ingredientsEn, bool isVeganFood, string comment, int? calories, int? spicyLevel)
+        public Dish(string nameKa, string nameEn, string descriptionKa, string descriptionEn, decimal? price, Guid dishCategoryId, string imageUrl, string videoUrl, int? preparationTimeMinutes, string volume, string alcoholContent, string ingredients, string ingredientsEn, bool isVeganDish, string comment, int? calories, int? spicyLevel)
         {
             NameKa = nameKa;
             NameEn = nameEn;
             DescriptionKa = descriptionKa;
             DescriptionEn = descriptionEn;
             Price = price;
-            FoodCategoryId = foodCategoryId;
+            DishCategoryId = dishCategoryId;
             ImageUrl = imageUrl;
             VideoUrl = videoUrl;
             PreparationTimeMinutes = preparationTimeMinutes;
@@ -44,22 +43,22 @@ namespace Identity.Domain.Entities
             AlcoholContent = alcoholContent;
             Ingredients = ingredients;
             IngredientsEn = ingredientsEn;
-            IsVeganFood = isVeganFood;
+            IsVeganDish = isVeganDish;
             Comment = comment;
             Calories = calories;
             SpicyLevel = spicyLevel;
         }
 
-        public void Update(string nameKa, string nameEn, string descriptionKa, string descriptionEn, decimal? price, Guid foodCategoryId,
+        public void Update(string nameKa, string nameEn, string descriptionKa, string descriptionEn, decimal? price, Guid dishCategoryId,
             string imageUrl, string videoUrl, int? preparationTimeMinutes, bool isAvailable, string volume, string alcoholContent,
-            string ingredients, string ingredientsEn, bool isVeganFood, string comment, int? calories, int? spicyLevel)
+            string ingredients, string ingredientsEn, bool isVeganDish, string comment, int? calories, int? spicyLevel)
         {
             NameKa = nameKa;
             NameEn = nameEn;
             DescriptionKa = descriptionKa;
             DescriptionEn = descriptionEn;
             Price = price;
-            FoodCategoryId = foodCategoryId;
+            DishCategoryId = dishCategoryId;
             ImageUrl = imageUrl;
             VideoUrl = videoUrl;
             PreparationTimeMinutes = preparationTimeMinutes;
@@ -68,7 +67,7 @@ namespace Identity.Domain.Entities
             AlcoholContent = alcoholContent;
             Ingredients = ingredients;
             IngredientsEn = ingredientsEn;
-            IsVeganFood = isVeganFood;
+            IsVeganDish = isVeganDish;
             Comment = comment;
             Calories = calories;
             SpicyLevel = spicyLevel;

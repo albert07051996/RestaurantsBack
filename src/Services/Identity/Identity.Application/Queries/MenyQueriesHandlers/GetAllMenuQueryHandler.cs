@@ -7,52 +7,52 @@ using Microsoft.EntityFrameworkCore;
 
 
 namespace Identity.Application.Queries.MenyQueriesHandlers;
-public class GetAllMenuQueryHandler : IRequestHandler<GetAllMenuQuery, Result<List<MenuItemDto>>>
+public class GetAllDishQueryHandler : IRequestHandler<GetAllDishesQuery, Result<List<DishDto>>>
 {
     private readonly IApplicationDbContext _context; // ინტერფეისი
 
-    public GetAllMenuQueryHandler(IApplicationDbContext context)
+    public GetAllDishQueryHandler(IApplicationDbContext context)
     {
         _context = context;
     }
 
-    public async Task<Result<List<MenuItemDto>>> Handle(GetAllMenuQuery request, CancellationToken cancellationToken)
+    public async Task<Result<List<DishDto>>> Handle(GetAllDishesQuery request, CancellationToken cancellationToken)
     {
         try
         {
-            var menu = await _context.MenuItems 
-                
+            var Dish = await _context.Dishes
+
                 .Where(u => !u.IsDeleted)
                 .ToListAsync(cancellationToken);
 
-            var menuDtos = menu.Select(menu => new MenuItemDto(
-                menu.Id,
-                menu.NameKa,
-                menu.NameEn,
-                menu.DescriptionKa,
-                menu.DescriptionEn,
-                menu.Price,
-                menu.FoodCategoryId,
-                menu.PreparationTimeMinutes,
-                menu.Calories,
-                menu.SpicyLevel,
-                menu.Ingredients,
-                menu.IngredientsEn,
-                menu.Volume,
-                menu.AlcoholContent,
-                menu.IsVeganFood,
-                menu.Comment,
-                menu.ImageUrl,
-                menu.VideoUrl,
-                menu.CreatedAt
+            var DishDtos = Dish.Select(Dish => new DishDto(
+                Dish.Id,
+                Dish.NameKa,
+                Dish.NameEn,
+                Dish.DescriptionKa,
+                Dish.DescriptionEn,
+                Dish.Price,
+                Dish.DishCategoryId,
+                Dish.PreparationTimeMinutes,
+                Dish.Calories,
+                Dish.SpicyLevel,
+                Dish.Ingredients,
+                Dish.IngredientsEn,
+                Dish.Volume,
+                Dish.AlcoholContent,
+                Dish.IsVeganDish,
+                Dish.Comment,
+                Dish.ImageUrl,
+                Dish.VideoUrl,
+                Dish.CreatedAt
                 )).ToList();
 
 
-            return Result<List<MenuItemDto>>.Success(menuDtos);
+            return Result<List<DishDto>>.Success(DishDtos);
         }
         catch (Exception ex)
         {
-            return Result<List<MenuItemDto>>.Failure($"Error retrieving users: {ex.Message}");
+            return Result<List<DishDto>>.Failure($"Error retrieving users: {ex.Message}");
         }
     }
 }

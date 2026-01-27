@@ -2,9 +2,9 @@
 using Identity.Application.DTOs;
 using MediatR;
 
-namespace Identity.Application.Commands.FoodCategoriesCommands;
+namespace Identity.Application.Commands.DishCategoriesCommands;
 
-public record FoodCategoryCommand
+public record DishCategoryCommand
 (
     string NameKa,
     string NameEn,
@@ -12,4 +12,4 @@ public record FoodCategoryCommand
     string DescriptionEn,
     int Priority,
     string ImageUrl
-) : IRequest<Result<FoodCategoryResponseDto>>;
+) : IRequest<Result<DishCategoryResponseDto>>;

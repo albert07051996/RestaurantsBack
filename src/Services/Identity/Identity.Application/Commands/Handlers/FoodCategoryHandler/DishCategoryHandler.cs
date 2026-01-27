@@ -1,8 +1,8 @@
 using BuildingBlocks.Shared.Common;
 using BuildingBlocks.Shared.Interfaces;
 using Identity.Application.Commands.AuthCommands;
-using Identity.Application.Commands.FoodCategoriesCommands;
-using Identity.Application.Commands.MenuCommands;
+using Identity.Application.Commands.DishCategoriesCommands;
+using Identity.Application.Commands.DishCommands;
 using Identity.Application.DTOs;
 using Identity.Application.Interfaces;
 using Identity.Domain.Entities;
@@ -11,33 +11,33 @@ using MediatR;
 
 namespace Identity.Application.Commands.Handlers.AuthHandler;
 
-public class FoodCategoryHandler : IRequestHandler<FoodCategoryCommand, Result<FoodCategoryResponseDto>>
+public class DishCategoryHandler : IRequestHandler<DishCategoryCommand, Result<DishCategoryResponseDto>>
 {
     private readonly IUserRepository _userRepository;
     private readonly IUnitOfWork _unitOfWork;
     private readonly IPasswordHasher _passwordHasher;
     private readonly IJwtTokenGenerator _jwtTokenGenerator;
-    private readonly IFoodCategoryRepository _foodCategoryRepository;
+    private readonly IDishCategoryRepository _DishCategoryRepository;
 
-    public FoodCategoryHandler(
+    public DishCategoryHandler(
         IUserRepository userRepository,
         IUnitOfWork unitOfWork,
         IPasswordHasher passwordHasher,
         IJwtTokenGenerator jwtTokenGenerator,
-        IMenuRepository menuRepository,
-        IFoodCategoryRepository foodCategoryRepository)
+        IDishRepository DishRepository,
+        IDishCategoryRepository DishCategoryRepository)
     {
         _userRepository = userRepository;
         _unitOfWork = unitOfWork;
         _passwordHasher = passwordHasher;
         _jwtTokenGenerator = jwtTokenGenerator;
-        _foodCategoryRepository = foodCategoryRepository;
+        _DishCategoryRepository = DishCategoryRepository;
     }
 
 
-    public async Task<Result<FoodCategoryResponseDto>> Handle(FoodCategoryCommand request, CancellationToken cancellationToken)
+    public async Task<Result<DishCategoryResponseDto>> Handle(DishCategoryCommand request, CancellationToken cancellationToken)
     {
-        var foodCategory = new FoodCategory(
+        var DishCategory = new DishCategory(
         request.NameKa,
         request.NameEn,
         request.DescriptionKa,
@@ -47,10 +47,10 @@ public class FoodCategoryHandler : IRequestHandler<FoodCategoryCommand, Result<F
 
         );
 
-        await _foodCategoryRepository.AddAsync(foodCategory, cancellationToken);
+        await _DishCategoryRepository.AddAsync(DishCategory, cancellationToken);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
 
-        var menuResponse = new FoodCategoryResponseDto("Menu item created successfully");
-        return Result<FoodCategoryResponseDto>.Success(menuResponse);
+        var DishResponse = new DishCategoryResponseDto("Dish item created successfully");
+        return Result<DishCategoryResponseDto>.Success(DishResponse);
     }
 }

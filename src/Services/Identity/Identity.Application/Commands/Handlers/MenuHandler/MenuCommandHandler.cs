@@ -1,7 +1,7 @@
 using BuildingBlocks.Shared.Common;
 using BuildingBlocks.Shared.Interfaces;
 using Identity.Application.Commands.AuthCommands;
-using Identity.Application.Commands.MenuCommands;
+using Identity.Application.Commands.DishCommands;
 using Identity.Application.DTOs;
 using Identity.Application.Interfaces;
 using Identity.Domain.Entities;
@@ -10,38 +10,38 @@ using MediatR;
 
 namespace Identity.Application.Commands.Handlers.AuthHandler;
 
-public class MenuCommandHandler : IRequestHandler<MenuCommand, Result<MenuResponseDto>>
+public class DishCommandHandler : IRequestHandler<DishCommand, Result<DishResponseDto>>
 {
     private readonly IUserRepository _userRepository;
     private readonly IUnitOfWork _unitOfWork;
     private readonly IPasswordHasher _passwordHasher;
     private readonly IJwtTokenGenerator _jwtTokenGenerator;
-    private readonly IMenuRepository _menuRepository;
+    private readonly IDishRepository _DishRepository;
 
-    public MenuCommandHandler(
+    public DishCommandHandler(
         IUserRepository userRepository,
         IUnitOfWork unitOfWork,
         IPasswordHasher passwordHasher,
         IJwtTokenGenerator jwtTokenGenerator,
-        IMenuRepository menuRepository)
+        IDishRepository DishRepository)
     {
         _userRepository = userRepository;
         _unitOfWork = unitOfWork;
         _passwordHasher = passwordHasher;
         _jwtTokenGenerator = jwtTokenGenerator;
-        _menuRepository = menuRepository;
+        _DishRepository = DishRepository;
     }
 
 
-    public async Task<Result<MenuResponseDto>> Handle(MenuCommand request, CancellationToken cancellationToken)
+    public async Task<Result<DishResponseDto>> Handle(DishCommand request, CancellationToken cancellationToken)
     {
-        var menu = new MenuItem(
+        var Dish = new Dish(
         request.NameKa,
         request.NameEn,
         request.DescriptionKa,
         request.DescriptionEn,
         request.Price,
-        request.foodCategoryId,
+        request.DishCategoryId,
         request.ImageUrl,
         request.VideoUrl,
         request.PreparationTimeMinutes,
@@ -49,16 +49,16 @@ public class MenuCommandHandler : IRequestHandler<MenuCommand, Result<MenuRespon
         request.AlcoholContent,
         request.Ingredients,
         request.IngredientsEn,
-        request.IsVeganFood,
+        request.IsVeganDish,
         request.Comment,
         request.Calories,
         request.SpicyLevel
         );
 
-        await _menuRepository.AddAsync(menu, cancellationToken);
+        await _DishRepository.AddAsync(Dish, cancellationToken);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
 
-        var menuResponse = new MenuResponseDto("Menu item created successfully");
-        return Result<MenuResponseDto>.Success(menuResponse);
+        var DishResponse = new DishResponseDto("Dish item created successfully");
+        return Result<DishResponseDto>.Success(DishResponse);
     }
 }

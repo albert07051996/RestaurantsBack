@@ -5,6 +5,6 @@ namespace Identity.Application.Common.Interfaces;
 
 public interface IApplicationDbContext
 {
-	DbSet<MenuItem> MenuItems { get; } // ჩაამატეთ თქვენი Entity-ები
+	DbSet<Dish> Dishes { get; } // ჩაამატეთ თქვენი Entity-ები
 	Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 }

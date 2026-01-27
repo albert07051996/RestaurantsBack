@@ -62,8 +62,8 @@ builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Regis
 // Repositories
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-builder.Services.AddScoped<IMenuRepository, MenuRepository>();
-builder.Services.AddScoped<IFoodCategoryRepository, FoodCategoryRepository>();
+builder.Services.AddScoped<IDishRepository, DishRepository>();
+builder.Services.AddScoped<IDishCategoryRepository, DishCategoryRepository>();
 //Cloudinary
 builder.Services.Configure<CloudinarySettings>(
     builder.Configuration.GetSection("Cloudinary"));
@@ -119,7 +119,9 @@ app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
     c.SwaggerEndpoint("/swagger/v1/swagger.json", "Identity API v1");
-    c.RoutePrefix = "swagger"; // ან string.Empty თუ root-ზე გინდა
+    c.RoutePrefix = "swagger"; 
+    c.RoutePrefix = string.Empty; 
+
 });
 
 app.UseCors("AllowAll");

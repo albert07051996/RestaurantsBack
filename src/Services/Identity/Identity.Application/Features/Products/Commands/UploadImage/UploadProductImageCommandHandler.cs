@@ -11,14 +11,14 @@ namespace Identity.Application.Features.Products.Commands.UploadImage
         : IRequestHandler<UploadProductImageCommand, string>
     {
         private readonly IImageStorageService _imageStorageService;
-        private readonly IMenuRepository _menuRepository;
+        private readonly IDishRepository _DishRepository;
 
         public UploadProductImageCommandHandler(
             IImageStorageService imageStorageService,
-            IMenuRepository productRepository)
+            IDishRepository productRepository)
         {
             _imageStorageService = imageStorageService;
-            _menuRepository = productRepository;
+            _DishRepository = productRepository;
         }
 
         public async Task<string> Handle(
@@ -33,7 +33,7 @@ namespace Identity.Application.Features.Products.Commands.UploadImage
             );
 
             // მოძებნე პროდუქტი
-            var product = await _menuRepository.GetByIdAsync(
+            var product = await _DishRepository.GetByIdAsync(
                 request.ProductId,
                 cancellationToken
             );
@@ -56,7 +56,7 @@ namespace Identity.Application.Features.Products.Commands.UploadImage
 
             // განაახლე პროდუქტი
             product.ImageUrl = publicId;
-            await _menuRepository.UpdateAsync(product, cancellationToken);
+            await _DishRepository.UpdateAsync(product, cancellationToken);
 
             // დააბრუნე URL
             return await _imageStorageService.GetImageUrlAsync(publicId);

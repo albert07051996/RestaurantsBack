@@ -7,16 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Identity.Application.Commands.MenuCommands;
+namespace Identity.Application.Commands.DishCommands;
 
-public record MenuCommand
+public record DishCommand
 (
     string NameKa,
     string NameEn,
     string DescriptionKa,
     string DescriptionEn,
     decimal? Price,
-    Guid foodCategoryId,
+    Guid DishCategoryId,
     int? PreparationTimeMinutes,
     int? Calories,
     int? SpicyLevel,
@@ -24,8 +24,8 @@ public record MenuCommand
     string IngredientsEn,
     string Volume,
     string AlcoholContent,
-    bool IsVeganFood,
+    bool IsVeganDish,
     string Comment,
     string ImageUrl,
     string VideoUrl
-)   : IRequest<Result<MenuResponseDto>>;
+)   : IRequest<Result<DishResponseDto>>;

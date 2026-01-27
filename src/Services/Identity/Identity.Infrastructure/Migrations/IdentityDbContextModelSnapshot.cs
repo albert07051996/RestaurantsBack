@@ -22,7 +22,104 @@ namespace Identity.Infrastructure.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("Identity.Domain.Entities.FoodCategory", b =>
+            modelBuilder.Entity("Identity.Domain.Entities.Dish", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("AlcoholContent")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<int?>("Calories")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Comment")
+                        .IsRequired()
+                        .HasMaxLength(300)
+                        .HasColumnType("character varying(300)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("DescriptionEn")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("DescriptionKa")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("DishCategoryId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("ImagePublicId")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<string>("Ingredients")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("IngredientsEn")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<bool>("IsAvailable")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsVeganDish")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("NameEn")
+                        .IsRequired()
+                        .HasMaxLength(60)
+                        .HasColumnType("character varying(60)");
+
+                    b.Property<string>("NameKa")
+                        .IsRequired()
+                        .HasMaxLength(60)
+                        .HasColumnType("character varying(60)");
+
+                    b.Property<int?>("PreparationTimeMinutes")
+                        .HasColumnType("integer");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int?>("SpicyLevel")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("VideoUrl")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<string>("Volume")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DishCategoryId");
+
+                    b.ToTable("Dishes");
+                });
+
+            modelBuilder.Entity("Identity.Domain.Entities.DishCategory", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -66,101 +163,7 @@ namespace Identity.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("FoodCategories");
-                });
-
-            modelBuilder.Entity("Identity.Domain.Entities.MenuItem", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("AlcoholContent")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.Property<int?>("Calories")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Comment")
-                        .IsRequired()
-                        .HasMaxLength(300)
-                        .HasColumnType("character varying(300)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("DescriptionEn")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("DescriptionKa")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<Guid>("FoodCategoryId")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("ImageUrl")
-                        .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("character varying(500)");
-
-                    b.Property<string>("Ingredients")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("IngredientsEn")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<bool>("IsAvailable")
-                        .HasColumnType("boolean");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
-
-                    b.Property<bool>("IsVeganFood")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("NameEn")
-                        .IsRequired()
-                        .HasMaxLength(60)
-                        .HasColumnType("character varying(60)");
-
-                    b.Property<string>("NameKa")
-                        .IsRequired()
-                        .HasMaxLength(60)
-                        .HasColumnType("character varying(60)");
-
-                    b.Property<int?>("PreparationTimeMinutes")
-                        .HasColumnType("integer");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int?>("SpicyLevel")
-                        .HasColumnType("integer");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("VideoUrl")
-                        .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("character varying(500)");
-
-                    b.Property<string>("Volume")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("FoodCategoryId");
-
-                    b.ToTable("MenuItems");
+                    b.ToTable("DishCategories");
                 });
 
             modelBuilder.Entity("Identity.Domain.Entities.Role", b =>
@@ -305,15 +308,15 @@ namespace Identity.Infrastructure.Migrations
                     b.ToTable("UserRoles");
                 });
 
-            modelBuilder.Entity("Identity.Domain.Entities.MenuItem", b =>
+            modelBuilder.Entity("Identity.Domain.Entities.Dish", b =>
                 {
-                    b.HasOne("Identity.Domain.Entities.FoodCategory", "FoodCategory")
-                        .WithMany("MenuItems")
-                        .HasForeignKey("FoodCategoryId")
+                    b.HasOne("Identity.Domain.Entities.DishCategory", "DishCategory")
+                        .WithMany("Dishes")
+                        .HasForeignKey("DishCategoryId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("FoodCategory");
+                    b.Navigation("DishCategory");
                 });
 
             modelBuilder.Entity("Identity.Domain.Entities.UserRole", b =>
@@ -335,9 +338,9 @@ namespace Identity.Infrastructure.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Identity.Domain.Entities.FoodCategory", b =>
+            modelBuilder.Entity("Identity.Domain.Entities.DishCategory", b =>
                 {
-                    b.Navigation("MenuItems");
+                    b.Navigation("Dishes");
                 });
 
             modelBuilder.Entity("Identity.Domain.Entities.Role", b =>

@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Identity.Infrastructure.Repositories;
 
-public class FoodCategoryRepository : Repository<FoodCategory>, IFoodCategoryRepository
+public class DishRepository : Repository<Dish>, IDishRepository
 {
-    public FoodCategoryRepository(IdentityDbContext context) : base(context)
+    public DishRepository(IdentityDbContext context) : base(context)
     {
     }
 

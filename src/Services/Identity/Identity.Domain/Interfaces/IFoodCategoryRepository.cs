@@ -3,7 +3,7 @@ using Identity.Domain.Entities;
 
 namespace Identity.Domain.Interfaces;
 
-public interface IFoodCategoryRepository : IRepository<FoodCategory>
+public interface IDishCategoryRepository : IRepository<DishCategory>
 {
     //Task<User?> GetByEmailAsync(string email, CancellationToken cancellationToken = default);
     //Task<User?> GetByUserNameAsync(string userName, CancellationToken cancellationToken = default);

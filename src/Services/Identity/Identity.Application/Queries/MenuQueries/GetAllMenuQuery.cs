@@ -4,4 +4,4 @@ using MediatR;
 
 namespace Identity.Application.Queries;
 
-public record GetAllMenuQuery : IRequest<Result<List<MenuItemDto>>>;
+public record GetAllDishesQuery : IRequest<Result<List<DishDto>>>;

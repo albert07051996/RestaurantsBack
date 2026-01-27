@@ -14,8 +14,8 @@ public class IdentityDbContext : DbContext, IApplicationDbContext
     public DbSet<User> Users => Set<User>();
     public DbSet<Role> Roles => Set<Role>();
     public DbSet<UserRole> UserRoles => Set<UserRole>();
-    public DbSet<MenuItem> MenuItems => Set<MenuItem>();
-    public DbSet<FoodCategory> FoodCategories => Set<FoodCategory>();
+    public DbSet<Dish> Dishes => Set<Dish>();
+    public DbSet<DishCategory> DishCategories => Set<DishCategory>();
 
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -28,7 +28,7 @@ public class IdentityDbContext : DbContext, IApplicationDbContext
     {
         base.OnModelCreating(modelBuilder);
 
-        modelBuilder.Entity<FoodCategory>(entity =>
+        modelBuilder.Entity<DishCategory>(entity =>
         {
             entity.HasKey(e => e.Id);
             entity.Property(e => e.NameKa).IsRequired().HasMaxLength(100);
@@ -95,8 +95,8 @@ public class IdentityDbContext : DbContext, IApplicationDbContext
             entity.HasQueryFilter(e => !e.IsDeleted);
         });
 
-        // menu 
-        modelBuilder.Entity<MenuItem>(entity =>
+        // Dish 
+        modelBuilder.Entity<Dish>(entity =>
         {
             entity.HasKey(e => e.Id);
             entity.Property(e => e.NameKa).IsRequired().HasMaxLength(60);
@@ -104,9 +104,9 @@ public class IdentityDbContext : DbContext, IApplicationDbContext
             entity.Property(e => e.DescriptionKa).IsRequired();
             entity.Property(e => e.DescriptionEn).IsRequired();
             entity.Property(e => e.Price).IsRequired().HasColumnType("decimal(18,2)");
-            entity.HasOne(m => m.FoodCategory)
-                  .WithMany(c => c.MenuItems)
-                  .HasForeignKey(m => m.FoodCategoryId)
+            entity.HasOne(m => m.DishCategory)
+                  .WithMany(c => c.Dishes)
+                  .HasForeignKey(m => m.DishCategoryId)
                   .OnDelete(DeleteBehavior.Restrict);
             entity.Property(e => e.ImageUrl).HasMaxLength(500); 
             entity.Property(e => e.VideoUrl).HasMaxLength(500);
@@ -116,7 +116,7 @@ public class IdentityDbContext : DbContext, IApplicationDbContext
             entity.Property(e => e.AlcoholContent).HasMaxLength(50);
             entity.Property(e => e.Ingredients).IsRequired();
             entity.Property(e => e.IngredientsEn).IsRequired();
-            entity.Property(e => e.IsVeganFood).IsRequired();
+            entity.Property(e => e.IsVeganDish).IsRequired();
             entity.Property(e => e.Comment).HasMaxLength(300);
             entity.Property(e => e.Calories);
             entity.Property(e => e.SpicyLevel);

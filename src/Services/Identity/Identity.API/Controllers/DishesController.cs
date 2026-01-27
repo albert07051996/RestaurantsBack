@@ -1,6 +1,6 @@
 using Identity.Application.Commands;
-using Identity.Application.Commands.FoodCategoriesCommands;
-using Identity.Application.Commands.MenuCommands;
+using Identity.Application.Commands.DishCategoriesCommands;
+using Identity.Application.Commands.DishCommands;
 
 using Identity.Application.DTOs;
 using Identity.Application.Queries;
@@ -12,21 +12,21 @@ namespace Identity.API.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class MenuController : ControllerBase
+public class DishesController : ControllerBase
 {
     private readonly IMediator _mediator;
 
-    public MenuController(IMediator mediator)
+    public DishesController(IMediator mediator)
     {
         _mediator = mediator;
     }
 
-    //[HttpGet("getAllMenuItems")]
-    //public async Task<ActionResult<List<MenuItemDto>>> GetAllMenuItems([FromQuery] string? category = null)
+    //[HttpGet("getAllDishItems")]
+    //public async Task<ActionResult<List<DishItemDto>>> GetAllDishItems([FromQuery] string? category = null)
     //{
 
 
-    //var query = _context.MenuItems.AsQueryable();
+    //var query = _context.DishItems.AsQueryable();
 
     //if (!string.IsNullOrEmpty(category))
     //{
@@ -42,10 +42,10 @@ public class MenuController : ControllerBase
     //var dtos = items.Select(ToDto).ToList();
     //return Ok(dtos);
     //}
-    [HttpGet("getAllMenuItems")]
+    [HttpGet("getAllDishes")]
     public async Task<IActionResult> GetAllUsers()
     {
-        var query = new GetAllMenuQuery();
+        var query = new GetAllDishesQuery();
         var result = await _mediator.Send(query);
 
         if (!result.IsSuccess)
@@ -57,16 +57,16 @@ public class MenuController : ControllerBase
     }
 
 
-    [HttpPost("addFood")]
-    public async Task<IActionResult> AddFood([FromBody] CreateMenuItemDto dto)
+    [HttpPost("addDish")]
+    public async Task<IActionResult> AddDish([FromBody] CreateDishDto dto)
     {
-        var command = new MenuCommand(
+        var command = new DishCommand(
             dto.NameKa,
             dto.NameEn,
             dto.DescriptionKa,
             dto.DescriptionEn,
             dto.Price,
-            dto.FoodCategoryId,
+            dto.DishCategoryId,
             dto.PreparationTimeMinutes,
             dto.Calories,
             dto.SpicyLevel,
@@ -74,7 +74,7 @@ public class MenuController : ControllerBase
             dto.IngredientsEn,
             dto.Volume,
             dto.AlcoholContent,
-            dto.IsVeganFood,
+            dto.IsVeganDish,
             dto.Comment,
             dto.ImageUrl,
             dto.VideoUrl
@@ -90,10 +90,10 @@ public class MenuController : ControllerBase
         return Ok(result.Data);
     }
 
-    [HttpPost("addFoodCategory")]
-    public async Task<IActionResult> addFoodCategory([FromBody] CreateFoodCategoryDto dto)
+    [HttpPost("addDishCategory")]
+    public async Task<IActionResult> addDishCategory([FromBody] CreateDishCategoryDto dto)
     {
-        var command = new FoodCategoryCommand(
+        var command = new DishCategoryCommand(
             dto.NameKa,
             dto.NameEn,
             dto.DescriptionKa,

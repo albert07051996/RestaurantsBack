@@ -1,12 +1,12 @@
 ﻿namespace Identity.Application.DTOs;
 
-public record CreateMenuItemDto(
+public record CreateDishDto(
     string NameKa,
     string NameEn,
     string DescriptionKa,
     string DescriptionEn,
     decimal? Price,
-    Guid FoodCategoryId,
+    Guid DishCategoryId,
     int? PreparationTimeMinutes,
     int? Calories,
     int? SpicyLevel,
@@ -14,7 +14,7 @@ public record CreateMenuItemDto(
     string IngredientsEn,
     string Volume,
     string AlcoholContent,
-    bool IsVeganFood,
+    bool IsVeganDish,
     string Comment,
     string ImageUrl,
     string VideoUrl 
@@ -22,13 +22,13 @@ public record CreateMenuItemDto(
 
 );
 
-public record UpdateMenuItemDto(
+public record UpdateDishDto(
     string NameKa,
     string NameEn,
     string DescriptionKa,
     string DescriptionEn,
     decimal Price,
-    Guid FoodCategoryId,
+    Guid DishCategoryId,
     int PreparationTimeMinutes,
     int Calories,
     int SpicyLevel,
@@ -36,20 +36,20 @@ public record UpdateMenuItemDto(
     string IngredientsEn,
     string Volume,
     string AlcoholContent,
-    bool IsVeganFood,
+    bool IsVeganDish,
     string Comment,
     string ImageUrl,
     string VideoUrl
 );
 
-public record MenuItemDto(
+public record DishDto(
     Guid Id,
     string NameKa,
     string NameEn,
     string DescriptionKa,
     string DescriptionEn,
     decimal? Price,
-    Guid FoodCategoryId,
+    Guid DishCategoryId,
     int? PreparationTimeMinutes,
     int? Calories,
     int? SpicyLevel,
@@ -57,14 +57,14 @@ public record MenuItemDto(
     string IngredientsEn,
     string Volume,
     string AlcoholContent,
-    bool IsVeganFood,
+    bool IsVeganDish,
     string Comment,
     string ImageUrl,
     string VideoUrl,
     DateTime CreatedAt
 );
 
-public record MenuResponseDto(
+public record DishResponseDto(
     string messige
    
 );
@@ -98,7 +98,7 @@ public record UpdateRestaurantSettingsDto(
     string SecondaryColor
 );
 
-public record CreateFoodCategoryDto(
+public record CreateDishCategoryDto(
     string NameKa,
     string NameEn,
     string DescriptionKa,
@@ -106,6 +106,6 @@ public record CreateFoodCategoryDto(
     int Priority,
     string ImageUrl
     );
-public record FoodCategoryResponseDto(
+public record DishCategoryResponseDto(
     string messige
 );
